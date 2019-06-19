@@ -6,7 +6,7 @@
 # Provides a base Ubuntu (16.04) image with latest buildbot worker installed
 # the worker image is not optimized for size, but rather uses ubuntu for wider package availability
 
-FROM        ubuntu:16.04
+FROM        debian:testing
 MAINTAINER  Buildbot maintainers
 
 
@@ -28,7 +28,9 @@ RUN         apt-get update && \
     libffi-dev \
     libssl-dev \
     python-setuptools \
-    curl && \
+    curl \
+    clang \
+    cmake && \
     rm -rf /var/lib/apt/lists/* && \
     # Test runs produce a great quantity of dead grandchild processes.  In a
     # non-docker environment, these are automatically reaped by init (process 1),
